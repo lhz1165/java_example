@@ -1,5 +1,9 @@
 package project;
 
+import project.db.Db;
+import project.entity.Student;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -28,20 +32,40 @@ public class Main {
             //用switch语句完成操作的选择
             switch (line) {
                 case "1":
-                    System.out.println("添加学生");
+                    Scanner in2 = new Scanner(System.in);
+                    System.out.println("输入学生学号");
+                    String sid = in2.nextLine();
+                    System.out.println("输入学生姓名");
+                    String name = in2.nextLine();
+                    System.out.println("输入学生年龄");
+                    int age = in2.nextInt();
+                    Student student = new Student(sid,name,age);
+                    //这种方式也行
+//                    student.setAge(age);
+//                    student.setName(name);
+//                    student.setSid(sid);
+                    List<Student> students = Db.students;
+                    students.add(student);
                     break;
                 case "2":
-                    System.out.println("删除学生");
+                    System.out.println("请输入你要删除的学生学号");
+                    String sid1 = in.nextLine();
+
+
+
                     break;
                 case "3":
-                    System.out.println("修改学生");
+                    System.out.println("请输入你要修改的学生学号");
                     break;
                 case "4":
-                    System.out.println("查看所有学生");
+                    List<Student> students1 = Db.students;
+                    System.out.println(students1.toString());
                     break;
                 case "5":
                     System.out.println("谢谢使用！");
                     System.exit(0);//虚拟机退出（整个程序退出）
+                default:
+                    System.out.println("输入不正确");
             }
         }
     }
